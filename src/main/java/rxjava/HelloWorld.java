@@ -38,5 +38,14 @@ public class HelloWorld {
                 .map(v -> v * v)
                 .sequential()
                 .blockingSubscribe(System.out::println);
+
+        System.out.println("\noperator");
+
+        Flowable.range(1, 10)
+                .observeOn(Schedulers.computation())
+                .limit(7)
+                .filter(integer -> integer % 2 == 0)
+                .map(v -> v * v)
+                .blockingSubscribe(System.out::println);
     }
 }
